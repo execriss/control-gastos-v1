@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BtnSave } from "../../index";
+import { BtnSave, v } from "../../index";
 
 export function LoginTemplate() {
   return (
@@ -12,8 +12,7 @@ export function LoginTemplate() {
         <Titulo>App Gastos</Titulo>
         <p>Toma el control de tus Gastos e Ingresos</p>
         <ContainerBtn>
-          <BtnSave />
-          <button>Crear Cuenta</button>
+          <BtnSave title="Iniciar con Google" icon={<v.iconogoogle />} />
         </ContainerBtn>
       </div>
     </Container>
