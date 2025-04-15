@@ -1,4 +1,5 @@
 export { default as App } from "./App";
+export * from "./components/atomos/Icon";
 export * from "./components/moleculas/BtnSave";
 export * from "./components/templates/HomeTemplate";
 export * from "./components/templates/LoginTemplate";
@@ -7,3 +8,5 @@ export * from "./main";
 export * from "./pages/Home";
 export * from "./pages/Login";
 export * from "./routers/routes";
+export * from "./styles/theme";
+export * from "./styles/variables";
