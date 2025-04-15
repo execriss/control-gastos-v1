@@ -12,6 +12,8 @@ export function BtnSave({ action, title, bgcolor, icon }) {
   );
 }
 
+// CONATINUAR MINUTO 58: 30
+
 const Container = styled.button`
   display: flex;
   justify-content: center;
