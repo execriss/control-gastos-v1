@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { MyRoutes } from "./index";
+import { AuthContextProvider, MyRoutes } from "./index";
 import { Light, Dark } from "./index";
 import { ThemeProvider } from "styled-components";
 
@@ -11,9 +11,14 @@ function App() {
 
   return (
     <>
+      {/* provider theme */}
       <ThemeContext.Provider value={{ setTheme, theme }}>
         <ThemeProvider theme={themeStyle}>
-          <MyRoutes />
+          {/* provider session */}
+          <AuthContextProvider>
+            {/* routes */}
+            <MyRoutes />
+          </AuthContextProvider>
         </ThemeProvider>
       </ThemeContext.Provider>
     </>
