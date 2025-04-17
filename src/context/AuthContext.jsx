@@ -12,8 +12,11 @@ export const AuthContextProvider = ({ children }) => {
         if (session === null) {
           setUser(null);
         } else {
-          setUser(session.user);
+          setUser(session.user.user_metadata);
           console.log(event);
+          console.log(session);
+          console.log("Eliminar...");
+          console.log("Eliminar 2...");
         }
       }
     );
