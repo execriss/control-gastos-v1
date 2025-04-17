@@ -15,6 +15,7 @@ export const AuthContextProvider = ({ children }) => {
           setUser(session.user.user_metadata);
           console.log(event);
           console.log(session);
+          console.log("Pueba 2");
         }
       }
     );
