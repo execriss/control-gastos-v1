@@ -13,6 +13,7 @@ export const AuthContextProvider = ({ children }) => {
           setUser(null);
         } else {
           setUser(session.user);
+          console.log(event);
         }
       }
     );

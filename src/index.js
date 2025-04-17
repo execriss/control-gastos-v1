@@ -4,6 +4,7 @@ export * from "./components/moleculas/BtnSave";
 export * from "./components/templates/HomeTemplate";
 export * from "./components/templates/LoginTemplate";
 export * from "./context/AuthContext";
+export * from "./hooks/ProtectedRoute";
 export * from "./index";
 export * from "./main";
 export * from "./pages/Home";
