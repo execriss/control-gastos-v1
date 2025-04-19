@@ -1,6 +1,12 @@
 import React, { createContext, useState } from "react";
-import { AuthContextProvider, MyRoutes, Sidebar } from "./index";
-import { Light, Dark } from "./index";
+import {
+  AuthContextProvider,
+  MyRoutes,
+  Sidebar,
+  Device,
+  Light,
+  Dark,
+} from "./index";
 import styled, { ThemeProvider } from "styled-components";
 
 export const ThemeContext = createContext();
@@ -34,12 +40,22 @@ function App() {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 65px 1fr;
+  grid-template-columns: 1fr;
+
+  /* saliendo del modo mobile */
+  @media ${Device.tablet} {
+    grid-template-columns: 65px 1fr;
+  }
 `;
 
 const ContainerBody = styled.div`
-  grid-column: 2;
+  grid-column: 1;
   width: 100%;
+
+  /* saliendo del modo mobile */
+  @media ${Device.tablet} {
+    grid-column: 2;
+  }
 `;
 
 export default App;
