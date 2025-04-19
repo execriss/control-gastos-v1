@@ -5,14 +5,12 @@ export function MyRoutes() {
   const { user } = UserAuth();
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        {/* Rutas protegidas */}
-        <Route element={<ProtectedRoute user={user} redirectTo="/login" />}>
-          <Route path="/" element={<Home />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      {/* Rutas protegidas */}
+      <Route element={<ProtectedRoute user={user} redirectTo="/login" />}>
+        <Route path="/" element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
