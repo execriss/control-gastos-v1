@@ -6,6 +6,7 @@ import {
   Device,
   Light,
   Dark,
+  MenuBurguer,
 } from "./index";
 import styled, { ThemeProvider } from "styled-components";
 
@@ -25,7 +26,13 @@ function App() {
           <AuthContextProvider>
             <Container>
               {/* sidebar */}
-              <Sidebar />
+              <div className="ContentSidebar">
+                <Sidebar />
+              </div>
+              {/* menu burger */}
+              <div className="ContentMenuBurguer">
+                <MenuBurguer />
+              </div>
               {/* routes */}
               <ContainerBody>
                 <MyRoutes />
@@ -41,10 +48,31 @@ function App() {
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
+  background: ${({ theme }) => theme.bgotal};
 
+  /* ocultar sidebar en mobile */
+  .ContentSidebar {
+    display: none;
+  }
+
+  .ContentMenuBurguer {
+    display: block;
+    position: absolute;
+    left: 20px;
+  }
   /* saliendo del modo mobile */
   @media ${Device.tablet} {
     grid-template-columns: 65px 1fr;
+
+    /* se muestra el sidebar fuera de mobile */
+    .ContentSidebar {
+      display: initial;
+    }
+
+    /* se oculta el menu burger fuera de mobile */
+    .ContentMenuBurguer {
+      display: none;
+    }
   }
 `;
 

@@ -1,6 +1,7 @@
 export { default as App } from "./App";
 export * from "./components/atomos/Icon";
 export * from "./components/moleculas/BtnSave";
+export * from "./components/organismos/menuBurguer/MenuBurguer";
 export * from "./components/organismos/sidebar/Sidebar";
 export * from "./components/templates/HomeTemplate";
 export * from "./components/templates/LoginTemplate";
