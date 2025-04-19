@@ -25,9 +25,12 @@ export function LoginTemplate() {
   );
 }
 const Container = styled.div`
-  background-image: url(${(props) => props.imgfondo});
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    /* Capa inferior: Imagen de fondo */ url(${(props) => props.imgfondo});
+
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -38,12 +41,16 @@ const Container = styled.div`
   .contentCard {
     background-color: #131313;
     border-radius: 20px;
+    border: 1px solid #272727;
     gap: 30px;
     display: flex;
     flex-direction: column;
     margin: 20px;
     padding: 20px;
-    box-shadow: 8px 5px 18px 3px rgba(0, 0, 0, 0.75);
+    box-shadow: 8px 1px 18px 3px rgba(25, 36, 37, 0.75);
+    animation: pulseShadow 1.5s ease-in-out infinite alternate; /* Ajusta duración (3s), timing y repetición */
+    position: relative;
+    z-index: 1;
 
     .version {
       color: #727272;
@@ -73,6 +80,18 @@ const Container = styled.div`
     }
     100% {
       transform: translate(0, -0px);
+    }
+  }
+
+  @keyframes pulseShadow {
+    0% {
+      box-shadow: 8px 5px 18px 3px rgba(25, 36, 37, 0.75);
+    }
+    50% {
+      box-shadow: 8px 5px 25px 6px rgba(25, 36, 37, 0.85);
+    }
+    100% {
+      box-shadow: 8px 5px 18px 3px rgba(25, 36, 37, 0.75);
     }
   }
 `;
