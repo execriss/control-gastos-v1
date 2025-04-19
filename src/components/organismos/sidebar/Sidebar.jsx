@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { v, LinksArray } from "../../../index";
+import { LinksArray, v } from "../../../index";
 import { NavLink } from "react-router-dom";
 
 export function Sidebar({ state, setState }) {
@@ -14,10 +14,18 @@ export function Sidebar({ state, setState }) {
         </div>
 
         {LinksArray.map(({ icon, label, to }) => (
-          <NavLink to={to}>
-            <div className="LinkIcon">{icon}</div>
-            <span>{label}</span>
-          </NavLink>
+          <div
+            key={label}
+            className={state ? "LinkContainer active" : "LinkContainer"}
+          >
+            <NavLink
+              to={to}
+              className={({ isActive }) => `Links${isActive ? ` active` : ``}`}
+            >
+              <div className="LinkIcon">{icon}</div>
+              <span>{label}</span>
+            </NavLink>
+          </div>
         ))}
 
         <Divider />
@@ -57,6 +65,47 @@ const Container = styled.div`
 
     h2 {
       display: ${({ isOpen }) => (isOpen ? `block` : `none`)};
+    }
+  }
+
+  .LinkContainer {
+    margin: 5px 0;
+    transition: all 0.3s;
+    padding: 0 5%;
+    position: relative;
+    &:hover {
+      background: ${({ theme }) => theme.bgAlpha};
+    }
+  }
+
+  .Links {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: calc(${() => v.smSpacing} - 2px) 0;
+    color: ${({ theme }) => theme.text};
+    height: 60px;
+
+    .LinkIcon {
+      padding: ${() => v.smSpacing} ${() => v.mdSpacing};
+      display: flex;
+
+      svg {
+        font-size: 25px;
+      }
+    }
+
+    &.active {
+      color: ${({ theme }) => theme.bg5};
+      &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        background: ${({ theme }) => theme.bg5};
+        width: 4px;
+        border-radius: 10px;
+        left: 0;
+      }
     }
   }
 `;
