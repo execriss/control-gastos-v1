@@ -27,7 +27,7 @@ function App() {
             <Container>
               {/* sidebar */}
               <div className="ContentSidebar">
-                <Sidebar />
+                <Sidebar state={sidebarOpen} setState={setSidebarOpen} />
               </div>
               {/* menu burger */}
               <div className="ContentMenuBurguer">

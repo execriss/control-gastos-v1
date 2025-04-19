@@ -17,3 +17,4 @@ export * from "./styles/breakpoints";
 export * from "./styles/theme";
 export * from "./styles/variables";
 export * from "./supabase/supabase.config";
+export * from "./utils/dataEstatica";
