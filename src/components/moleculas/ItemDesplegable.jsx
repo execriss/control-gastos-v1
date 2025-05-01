@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Icon } from "../../index";
 
-export function ItemDesplegable({ item }) {
+export function ItemDesplegable({ item, functionType }) {
   return (
-    <Container>
+    <Container onClick={functionType}>
       <Icon>{item.icono}</Icon>
       <span>{item.text}</span>
     </Container>

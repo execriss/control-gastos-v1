@@ -5,10 +5,18 @@ import {
   v as variables,
   ListaMenuDesplegable,
   DesplegableUser,
+  useAuthStore,
 } from "../../index";
 
 export function DataUser({ stateConfig }) {
   const { user } = UserAuth();
+  const { signOut } = useAuthStore();
+
+  const functionForType = async (type) => {
+    if (type === "cerrarsesion") {
+      await signOut();
+    }
+  };
 
   return (
     <Container onClick={stateConfig.setState}>
@@ -26,8 +34,13 @@ export function DataUser({ stateConfig }) {
         translateY="-20px"
       />
       <span className="name">{user.name}</span>
+
       {!stateConfig.state && (
-        <ListaMenuDesplegable data={DesplegableUser} top="62px" />
+        <ListaMenuDesplegable
+          data={DesplegableUser}
+          functionType={(type) => functionForType(type)}
+          top="62px"
+        />
       )}
     </Container>
   );
