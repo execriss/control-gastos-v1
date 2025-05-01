@@ -3,6 +3,8 @@ export * from "./components/atomos/ContentHeader";
 export * from "./components/atomos/Icon";
 export * from "./components/moleculas/BtnCircular";
 export * from "./components/moleculas/BtnSave";
+export * from "./components/moleculas/ItemDesplegable";
+export * from "./components/moleculas/ListaMenuDesplegable";
 export * from "./components/organismos/DataUser";
 export * from "./components/organismos/Header";
 export * from "./components/organismos/menuBurguer/MenuBurguer";
