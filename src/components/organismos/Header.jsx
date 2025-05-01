@@ -2,12 +2,12 @@ import React from "react";
 import { ContentHeader } from "../atomos/ContentHeader";
 import { DataUser } from "./DataUser";
 
-export function Header({ state, setState }) {
+export function Header({ stateConfig }) {
   console.log();
 
   return (
     <ContentHeader>
-      <DataUser state={state} setState={setState} />
+      <DataUser stateConfig={stateConfig} />
     </ContentHeader>
   );
 }

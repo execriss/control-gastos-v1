@@ -1,14 +1,15 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { Header } from "../../index";
 
 export function ConfigurationTemplate() {
-  console.log();
+  const [state, setState] = useState(false);
 
   return (
     <Container>
       {/* Header */}
       <header className="header">
-        <Header />
+        <Header stateConfig={{ state, setState: () => setState(!state) }} />
       </header>
 
       {/* Area 1 */}
