@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 import {
   AuthContextProvider,
   MyRoutes,
@@ -9,13 +9,15 @@ import {
   MenuBurguer,
 } from "./index";
 import styled, { ThemeProvider } from "styled-components";
+import { useLocation } from "react-router-dom";
 
-export const ThemeContext = createContext();
+export const ThemeContext = createContext(null);
 
 function App() {
   const [theme, setTheme] = useState("dark");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const themeStyle = theme === "light" ? Light : Dark;
+  const { pathname } = useLocation();
 
   return (
     <>
@@ -24,22 +26,26 @@ function App() {
         <ThemeProvider theme={themeStyle}>
           {/* provider session */}
           <AuthContextProvider>
-            <Container className={sidebarOpen ? "active" : ""}>
-              {/* sidebar */}
-              <div className="ContentSidebar">
-                <Sidebar state={sidebarOpen} setState={setSidebarOpen} />
-              </div>
+            {pathname !== "/login" ? (
+              <Container className={sidebarOpen ? "active" : ""}>
+                {/* sidebar */}
+                <div className="ContentSidebar">
+                  <Sidebar state={sidebarOpen} setState={setSidebarOpen} />
+                </div>
 
-              {/* menu burger */}
-              <div className="ContentMenuBurguer">
-                <MenuBurguer />
-              </div>
+                {/* menu burger */}
+                <div className="ContentMenuBurguer">
+                  <MenuBurguer />
+                </div>
 
-              {/* routes */}
-              <ContainerBody>
-                <MyRoutes />
-              </ContainerBody>
-            </Container>
+                {/* routes */}
+                <ContainerBody>
+                  <MyRoutes />
+                </ContainerBody>
+              </Container>
+            ) : (
+              <MyRoutes />
+            )}
           </AuthContextProvider>
         </ThemeProvider>
       </ThemeContext.Provider>

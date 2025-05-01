@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "../index";
+import { supabase, InsertUsers } from "../index";
 
 const AuthContext = createContext();
 
@@ -12,7 +12,10 @@ export const AuthContextProvider = ({ children }) => {
         if (session === null) {
           setUser(null);
         } else {
-          setUser(session.user.user_metadata);
+          setUser(session?.user.user_metadata);
+
+          // Insertar usuario db
+          insertUsers(session?.user.user_metadata, session?.user.id);
           console.log(event);
           console.log(session);
         }
@@ -23,6 +26,16 @@ export const AuthContextProvider = ({ children }) => {
       authListener.subscription;
     };
   }, []);
+
+  const insertUsers = async (dataProvider, idAuthSupabase) => {
+    const params = {
+      nombres: dataProvider.name,
+      foto: dataProvider.picture,
+      idauth_supabase: idAuthSupabase,
+    };
+
+    await InsertUsers(params);
+  };
 
   return (
     <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
