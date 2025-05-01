@@ -1,6 +1,10 @@
 export { default as App } from "./App";
+export * from "./components/atomos/ContentHeader";
 export * from "./components/atomos/Icon";
+export * from "./components/moleculas/BtnCircular";
 export * from "./components/moleculas/BtnSave";
+export * from "./components/organismos/DataUser";
+export * from "./components/organismos/Header";
 export * from "./components/organismos/menuBurguer/MenuBurguer";
 export * from "./components/organismos/sidebar/Sidebar";
 export * from "./components/organismos/sidebar/SidebarCard";

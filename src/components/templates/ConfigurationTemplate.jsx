@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Header } from "../../index";
 
 export function ConfigurationTemplate() {
   console.log();
@@ -6,7 +7,9 @@ export function ConfigurationTemplate() {
   return (
     <Container>
       {/* Header */}
-      <header className="header" />
+      <header className="header">
+        <Header />
+      </header>
 
       {/* Area 1 */}
       <section className="area1"></section>
