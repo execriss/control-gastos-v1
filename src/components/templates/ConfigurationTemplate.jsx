@@ -7,6 +7,10 @@ export function ConfigurationTemplate() {
   const [stateCountry, setStateCountry] = useState(true);
   const [select, setSelect] = useState([]);
 
+  const money = select.symbol;
+  const country = select.countryName;
+  const selectedCountry = `${money} - ${country}`;
+
   return (
     <Container>
       {/* Header */}
@@ -26,6 +30,7 @@ export function ConfigurationTemplate() {
         <ContentCard>
           <span>Moneda</span>
           <Selector
+            text1={selectedCountry}
             state={stateCountry}
             color={variables.colorselector}
             action={() => setStateCountry(!stateCountry)}

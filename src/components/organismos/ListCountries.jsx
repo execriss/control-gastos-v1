@@ -42,7 +42,38 @@ export function ListCountries({ setSelect, setState }) {
     </Container>
   );
 }
-const Container = styled.div``;
+const Container = styled.div`
+  margin-top: 10px;
+  position: absolute;
+  top: 88%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.bgtotal};
+  border-radius: 10px;
+  border: 3px solid #3a3a3a;
+  padding: 10px;
+  gap: 10px;
+  color: ${({ theme }) => theme.text};
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: inherit;
+
+    .close {
+      cursor: pointer;
+      font-size: 25px;
+      transition: all 0.2s;
+
+      &:hover {
+        color: ${() => variables.colorselector};
+        transform: scale(1.2);
+      }
+    }
+  }
+`;
 const ItemContainer = styled.section`
   gap: 10px;
   display: flex;
