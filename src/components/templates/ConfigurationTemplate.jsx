@@ -5,6 +5,7 @@ import { Header, ListCountries, Selector, v as variables } from "../../index";
 export function ConfigurationTemplate() {
   const [state, setState] = useState(true);
   const [stateCountry, setStateCountry] = useState(true);
+  const [select, setSelect] = useState([]);
 
   return (
     <Container>
@@ -24,8 +25,17 @@ export function ConfigurationTemplate() {
       <section className="area2">
         <ContentCard>
           <span>Moneda</span>
-          <Selector state={stateCountry} color={variables.colorselector} />
-          <ListCountries />
+          <Selector
+            state={stateCountry}
+            color={variables.colorselector}
+            action={() => setStateCountry(!stateCountry)}
+          />
+          {stateCountry && (
+            <ListCountries
+              setSelect={(p) => setSelect(p)}
+              setState={() => setStateCountry(!stateCountry)}
+            />
+          )}
         </ContentCard>
       </section>
 

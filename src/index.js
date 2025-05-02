@@ -31,4 +31,5 @@ export * from "./styles/variables";
 export * from "./supabase/crudUsers";
 export * from "./supabase/globalSupabase";
 export * from "./supabase/supabase.config";
+export * from "./utils/Conversiones";
 export * from "./utils/dataEstatica";
