@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Header, Selector, v as variables } from "../../index";
+import { Header, ListCountries, Selector, v as variables } from "../../index";
 
 export function ConfigurationTemplate() {
   const [state, setState] = useState(true);
@@ -25,6 +25,7 @@ export function ConfigurationTemplate() {
         <ContentCard>
           <span>Moneda</span>
           <Selector state={stateCountry} color={variables.colorselector} />
+          <ListCountries />
         </ContentCard>
       </section>
 
