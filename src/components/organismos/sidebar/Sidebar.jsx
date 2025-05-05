@@ -18,7 +18,7 @@ export function Sidebar({ state, setState }) {
           <div className="ImgContent">
             <img src={v.logo} alt="logo" />
           </div>
-          <h2>Codexia</h2>
+          {/* <h2>Gastin</h2> */}
         </div>
 
         {LinksArray.map(({ icon, label, to }) => (
@@ -77,7 +77,7 @@ const Container = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.bg5};
+    background-color: ${({ theme }) => theme.bg};
     border-radius: 10px;
   }
 
@@ -89,7 +89,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 60px;
+    padding: 10px 0 24px 0;
 
     .ImgContent {
       display: flex;
@@ -98,7 +98,7 @@ const Container = styled.div`
       width: 30px;
       cursor: pointer;
       transition: 0.3s ease;
-      transform: ${({ isOpen }) => (isOpen ? `scale(0.7)` : `scale(1.5)`)}
+      transform: ${({ isOpen }) => (isOpen ? `scale(2)` : `scale(1.5)`)}
         rotate(${({ theme }) => theme.logorotate});
 
       img {
