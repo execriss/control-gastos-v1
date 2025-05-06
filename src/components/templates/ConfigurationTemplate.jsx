@@ -1,14 +1,21 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Header, ListCountries, Selector, v as variables } from "../../index";
+import {
+  Header,
+  ListCountries,
+  Selector,
+  useUserStore,
+  v as variables,
+} from "../../index";
 
 export function ConfigurationTemplate() {
+  const { dataUsers } = useUserStore();
   const [state, setState] = useState(true);
   const [stateCountry, setStateCountry] = useState(true);
   const [select, setSelect] = useState([]);
 
-  const money = select.symbol;
-  const country = select.countryName;
+  const money = select.symbol ? select.symbol : dataUsers.moneda;
+  const country = select.countryName ? select.countryName : dataUsers.pais;
   const selectedCountry = `${money} - ${country}`;
 
   return (

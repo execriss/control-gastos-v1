@@ -20,13 +20,12 @@ export const showUsers = async () => {
       .eq("idauth_supabase", idAuthSupabase);
 
     if (error) {
-      alert("Error al mostrar usuarios: ", error.message);
+      console.error("Error al mostrar usuarios (SUP): ", error);
     }
-
-    return data[0];
+    if (data) {
+      return data[0];
+    }
   } catch (error) {
-    alert(
-      "Error al mostrar usuarios: " + error.error_description || error.message
-    );
+    console.error("Error al mostrar usuarios (INTERFACE): ", error);
   }
 };

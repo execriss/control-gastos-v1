@@ -7,17 +7,30 @@ import {
   Light,
   Dark,
   MenuBurguer,
+  useUserStore,
 } from "./index";
-import styled, { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider, keyframes } from "styled-components";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 export const ThemeContext = createContext(null);
 
 function App() {
+  const { pathname } = useLocation();
+  const { getUsers } = useUserStore();
   const [theme, setTheme] = useState("dark");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const themeStyle = theme === "light" ? Light : Dark;
-  const { pathname } = useLocation();
+
+  const { isLoading, error } = useQuery({
+    queryKey: ["mostrar usuarios"],
+    queryFn: () => getUsers(),
+  });
+
+  if (error) {
+    return <p>Error...</p>;
+  }
 
   return (
     <>
@@ -25,28 +38,36 @@ function App() {
       <ThemeContext.Provider value={{ setTheme, theme }}>
         <ThemeProvider theme={themeStyle}>
           {/* provider session */}
-          <AuthContextProvider>
-            {pathname !== "/login" ? (
-              <Container className={sidebarOpen ? "active" : ""}>
-                {/* sidebar */}
-                <div className="ContentSidebar">
-                  <Sidebar state={sidebarOpen} setState={setSidebarOpen} />
-                </div>
+          {isLoading ? (
+            <LoadingOverlay>
+              <Spinner />
+            </LoadingOverlay>
+          ) : (
+            <AuthContextProvider>
+              {pathname !== "/login" ? (
+                <Container className={sidebarOpen ? "active" : ""}>
+                  {/* sidebar */}
+                  <div className="ContentSidebar">
+                    <Sidebar state={sidebarOpen} setState={setSidebarOpen} />
+                  </div>
 
-                {/* menu burger */}
-                <div className="ContentMenuBurguer">
-                  <MenuBurguer />
-                </div>
+                  {/* menu burger */}
+                  <div className="ContentMenuBurguer">
+                    <MenuBurguer />
+                  </div>
 
-                {/* routes */}
-                <ContainerBody>
-                  <MyRoutes />
-                </ContainerBody>
-              </Container>
-            ) : (
-              <MyRoutes />
-            )}
-          </AuthContextProvider>
+                  {/* routes */}
+                  <ContainerBody>
+                    <MyRoutes />
+                  </ContainerBody>
+                </Container>
+              ) : (
+                <MyRoutes />
+              )}
+
+              <ReactQueryDevtools initialIsOpen={true} />
+            </AuthContextProvider>
+          )}
         </ThemeProvider>
       </ThemeContext.Provider>
     </>
@@ -98,6 +119,30 @@ const ContainerBody = styled.div`
   @media ${Device.tablet} {
     grid-column: 2;
   }
+`;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const LoadingOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background-color: ${({ theme }) => theme.bg};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
+
+const Spinner = styled.div`
+  border: 5px solid ${({ theme }) => theme.bg};
+  border-top: 5px solid ${({ theme }) => theme.primary};
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: ${spin} 1s linear infinite;
 `;
 
 export default App;

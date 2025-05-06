@@ -25,6 +25,7 @@ export * from "./pages/Home";
 export * from "./pages/Login";
 export * from "./routers/routes";
 export * from "./store/AuthStore";
+export * from "./store/UserStore";
 export * from "./styles/breakpoints";
 export * from "./styles/theme";
 export * from "./styles/variables";
