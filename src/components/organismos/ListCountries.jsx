@@ -3,6 +3,7 @@ import {
   v as variables,
   InputSearchList,
   ConvertirCapitalize,
+  Device
 } from "../../index";
 import iso from "iso-country-currency";
 import { useState } from "react";
@@ -55,6 +56,10 @@ const Container = styled.div`
   padding: 10px;
   gap: 10px;
   color: ${({ theme }) => theme.text};
+  
+  @media ${Device.tablet} {
+    width: 400px;
+  } 
 
   .header {
     display: flex;
