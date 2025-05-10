@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import {
+  GenericList,
   Header,
   ListCountries,
   Selector,
@@ -11,12 +12,23 @@ import {
 export function ConfigurationTemplate() {
   const { dataUsers } = useUserStore();
   const [state, setState] = useState(true);
-  const [stateCountry, setStateCountry] = useState(true);
   const [select, setSelect] = useState([]);
+  const [selectTheme, setSelectTheme] = useState([]);
+  const [stateCountry, setStateCountry] = useState(false);
+  const [stateListThemes, setStateListThemes] = useState(false);
 
+  // país moneda
   const money = select.symbol ? select.symbol : dataUsers.moneda;
   const country = select.countryName ? select.countryName : dataUsers.pais;
   const selectedCountry = `${money} - ${country}`;
+  console.log(dataUsers);
+
+  // tema
+  const iconoDB = dataUsers.tema === "0" ? "☀️" : "🌙";
+  const themeDB = dataUsers.tema === "0" ? "light" : "dark";
+  const initialTheme = selectTheme.tema ? selectTheme.tema : themeDB;
+  const initialIcon = selectTheme.icono ? selectTheme.icono : iconoDB;
+  const selectedTheme = `${initialIcon} ${initialTheme}`;
 
   return (
     <Container>
@@ -48,6 +60,18 @@ export function ConfigurationTemplate() {
               setState={() => setStateCountry(!stateCountry)}
             />
           )}
+        </ContentCard>
+
+        {/* theme */}
+        <ContentCard>
+          <span>Tema:</span>
+          <Selector
+            text1={selectedTheme}
+            color={variables.colorselector}
+            state={stateListThemes}
+            action={() => setStateListThemes(!stateListThemes)}
+          ></Selector>
+          {stateListThemes && <GenericList />}
         </ContentCard>
       </section>
 
@@ -89,6 +113,9 @@ const Container = styled.div`
     background: rgba(77, 237, 106, 0.14);
     display: flex;
     align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    gap: 30px;
   }
 
   .main {
