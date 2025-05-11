@@ -6,6 +6,7 @@ import {
   ListCountries,
   Selector,
   useUserStore,
+  TemasData,
   v as variables,
 } from "../../index";
 
@@ -71,7 +72,13 @@ export function ConfigurationTemplate() {
             state={stateListThemes}
             action={() => setStateListThemes(!stateListThemes)}
           ></Selector>
-          {stateListThemes && <GenericList />}
+          {stateListThemes && (
+            <GenericList
+              data={TemasData}
+              setState={() => setStateListThemes(!stateListThemes)}
+              action={setSelectTheme}
+            />
+          )}
         </ContentCard>
       </section>
 

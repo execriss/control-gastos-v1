@@ -1,5 +1,6 @@
 export { default as App } from "./App";
 export * from "./components/atomos/ContentHeader";
+export * from "./components/atomos/BtnClose";
 export * from "./components/atomos/Icon";
 export * from "./components/moleculas/BtnCircular";
 export * from "./components/moleculas/BtnSave";
