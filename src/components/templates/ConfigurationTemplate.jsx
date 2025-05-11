@@ -8,10 +8,12 @@ import {
   useUserStore,
   TemasData,
   v as variables,
+  BtnSave,
+  EditThemeAndMoneyUser,
 } from "../../index";
 
 export function ConfigurationTemplate() {
-  const { dataUsers } = useUserStore();
+  const { dataUsers, editTheme } = useUserStore();
   const [state, setState] = useState(true);
   const [select, setSelect] = useState([]);
   const [selectTheme, setSelectTheme] = useState([]);
@@ -30,6 +32,18 @@ export function ConfigurationTemplate() {
   const initialTheme = selectTheme.tema ? selectTheme.tema : themeDB;
   const initialIcon = selectTheme.icono ? selectTheme.icono : iconoDB;
   const selectedTheme = `${initialIcon} ${initialTheme}`;
+
+  // Edit action
+  const edit = async () => {
+    const themeSelected = selectTheme.descripcion === "light" ? "0" : "1";
+    const params = {
+      tema: themeSelected,
+      moneda: money,
+      pais: country,
+      id: dataUsers.id,
+    };
+    await EditThemeAndMoneyUser(params);
+  };
 
   return (
     <Container>
@@ -80,6 +94,13 @@ export function ConfigurationTemplate() {
             />
           )}
         </ContentCard>
+
+        <BtnSave
+          title="Guardar"
+          bgcolor={variables.colorselector}
+          icon={<variables.iconoguardar />}
+          action={edit}
+        />
       </section>
 
       {/* main */}
@@ -113,6 +134,7 @@ const Container = styled.div`
     background: rgba(229, 67, 26, 0.14);
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .area2 {
